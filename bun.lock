@@ -5,12 +5,14 @@
       "name": "evr-dashboard",
       "dependencies": {
         "@reduxjs/toolkit": "^2.6.1",
+        "azure-maps-drawing-tools": "^1.0.5",
         "echarts": "^5.6.0",
         "next": "15.2.2",
         "normalize.css": "^8.0.1",
         "react": "^19.0.0",
         "react-azure-maps": "^1.0.2",
         "react-dom": "^19.0.0",
+        "react-icons": "^5.5.0",
         "react-redux": "^9.2.0",
       },
       "devDependencies": {
@@ -303,6 +305,8 @@
     "axobject-query": ["axobject-query@4.1.0", "", {}, "sha512-qIj0G9wZbMGNLjLmg1PT6v2mE9AH2zlnADJD/2tC6E00hgmhUOfEB6greHPAfLRSufHqROIUTkw6E+M3lH0PTQ=="],
 
     "azure-maps-control": ["azure-maps-control@3.6.0", "", { "dependencies": { "@azure/msal-browser": "^2.32.1", "@mapbox/mapbox-gl-supported": "^2.0.1", "@maplibre/maplibre-gl-style-spec": "^20.0.0", "@types/geojson": "^7946.0.14" } }, "sha512-uMKpnoinHLpFotx1xxOZszNd9GiKGjnUDcjDHV8AheFzzf5lf6zS4ZYyqVRlpuC74hs/XDp1V2a1Jgr5RXSZQw=="],
+
+    "azure-maps-drawing-tools": ["azure-maps-drawing-tools@1.0.5", "", { "dependencies": { "azure-maps-control": "^2.3.2 || ^3.0.1" } }, "sha512-CROYBfaoQ3zo2Wy6f9vRwjW83wdKeXmBN5omBmz4L6Pd7foJfv+CVbOiMg/knR3qNzKHnzFQ+alI+0C4lvuNhg=="],
 
     "balanced-match": ["balanced-match@1.0.2", "", {}, "sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw=="],
 
@@ -689,6 +693,8 @@
     "react-azure-maps": ["react-azure-maps@1.0.2", "", { "dependencies": { "guid-typescript": "^1.0.9" }, "peerDependencies": { "azure-maps-control": "^3.5.0", "react": "^17.0.2 || ^18.0.0", "react-dom": "^17.0.2 || ^18.0.0" } }, "sha512-ySJOUDhCvSqgW1OVk0k1XWW8ok6ukg7XJ46J3jMQu2098EoerM/+pWexJ8t6WaaKAZ6myJMo9++z1UiCawkz4A=="],
 
     "react-dom": ["react-dom@19.0.0", "", { "dependencies": { "scheduler": "^0.25.0" }, "peerDependencies": { "react": "^19.0.0" } }, "sha512-4GV5sHFG0e/0AD4X+ySy6UJd3jVl1iNsNHdpad0qhABJ11twS3TTBnseqsKurKcsNqCEFeGL3uLpVChpIO3QfQ=="],
+
+    "react-icons": ["react-icons@5.5.0", "", { "peerDependencies": { "react": "*" } }, "sha512-MEFcXdkP3dLo8uumGI5xN3lDFNsRtrjbOEKDLD7yv76v4wpnEq2Lt2qeHaQOr34I/wPN3s3+N08WkQ+CW37Xiw=="],
 
     "react-is": ["react-is@16.13.1", "", {}, "sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ=="],
 

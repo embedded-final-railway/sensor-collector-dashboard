@@ -33,4 +33,40 @@ export class ApiService {
     }));
     return data;
   }
+
+  static async getRouteById(id: string): Promise<RoutePath> {
+    const response = await fetch(`${this.baseUrl}/route/${id}`);
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    const responseData = await response.json();
+    const data = {
+      ...responseData,
+      routePoints: responseData.route_points.map((point: any) => ({
+        latitude: point.latitude,
+        longitude: point.longitude,
+      })),
+    };
+    return data;
+  }
+
+  static async updateRoute(id: string, route: RoutePath): Promise<void> {
+    const data = {
+      ...route,
+      route_points: route.routePoints.map((point) => ({
+        latitude: point.latitude,
+        longitude: point.longitude,
+      })),
+    }
+    const response = await fetch(`${this.baseUrl}/route/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+  }
 }

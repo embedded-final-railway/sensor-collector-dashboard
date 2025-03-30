@@ -1,5 +1,8 @@
 .container {
+  display: flex;
+  align-items: center;
   background-color: rgba(255, 255, 255, 0.1);
+  justify-content: space-between;
   cursor: pointer;
 
   &:hover {
@@ -17,13 +20,21 @@
   width: fit-content;
 }
 
+.edit-icon {
+  border: 1px solid white;
+  border-radius: 5px;
+  padding: 10px;
+}
+
 @media (prefers-color-scheme: dark) {
   .container {
     background-color: rgba(0, 0, 0, 0.6);
     border-radius: 10px;
     padding: 10px 10px;
+
     &:hover {
       background-color: rgba(0, 0, 0, 0.8);
     }
   }
+  
 }
