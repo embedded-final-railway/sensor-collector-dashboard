@@ -1,29 +1,43 @@
 "use client";
 
-import { AuthenticationType, AzureMap, AzureMapsProvider, IAzureMapOptions } from "react-azure-maps";
+import { AuthenticationType, AzureMap, AzureMapHtmlMarker, AzureMapsProvider, IAzureMapOptions } from "react-azure-maps";
 import 'azure-maps-control/dist/atlas.min.css';
 import { CameraOptions } from "azure-maps-control";
-import { useEffect, useState } from "react";
-import { SensorApiService } from "@/services/api-service";
+import { useEffect, useRef, useState } from "react";
+import { ApiService } from "@/services/api-service";
+import { Route } from "next";
+import styles from "./styles.module.scss";
+import RouteList from "./route-list";
+
+const circleMarker = (
+  <div style={{
+    backgroundColor: 'blue', width: '20px', height: '20px', borderRadius: '50%', borderColor: 'white',
+    borderWidth: '3px', borderStyle: 'solid'
+  }} />
+);
 
 export default function Maps() {
+  const [position, setPosition] = useState<[number, number]>([0, 0]);
   const [cameraOptions, setCameraOptions] = useState<CameraOptions>({
     zoom: 17,
     pitch: 0,
     heading: 0,
   });
   useEffect(() => {
+    ApiService.fetchSensorData(1).then((data) => {
+      setPosition([data[0].longitude, data[0].latitude]);
+      setCameraOptions((prev) => {
+        return {
+          center: [data[0].longitude, data[0].latitude],
+        };
+      });
+    }).catch((error) => {
+      console.error("Error fetching sensor data:", error);
+    });
+  
     const interval = setInterval(() => {
-      SensorApiService.fetchSensorData(1).then((data) => {
-        setCameraOptions((prev) => {
-          delete prev.zoom;
-          delete prev.pitch;
-          delete prev.heading;
-          return {
-            ...prev,
-            center: [data[0].longitude, data[0].latitude],
-          };
-        });
+      ApiService.fetchSensorData(1).then((data) => {
+        setPosition([data[0].longitude, data[0].latitude]);
       }).catch((error) => {
         console.error("Error fetching sensor data:", error);
       });
@@ -39,11 +53,12 @@ export default function Maps() {
     },
     style: 'satellite',
   }
-
   return (
     <div style={{ width: "100%", height: "100vh" }}>
+     <RouteList />
       <AzureMapsProvider>
-        <AzureMap options={option} cameraOptions={cameraOptions}>
+        <AzureMap options={option} cameraOptions={cameraOptions} >
+          <AzureMapHtmlMarker options={{ position: position }} markerContent={circleMarker} />
         </AzureMap>
       </AzureMapsProvider>
     </div>

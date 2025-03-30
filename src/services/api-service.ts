@@ -1,6 +1,6 @@
-import { SensorData } from "./types";
+import { RoutePath, SensorData } from "./types";
 
-export class SensorApiService {
+export class ApiService {
   private static baseUrl: string = 'http://localhost:8080'; // Adjust the URL as needed
 
   static async fetchSensorData(size?: number): Promise<SensorData[]> {
@@ -16,5 +16,21 @@ export class SensorApiService {
       ...item,
       timestamp: new Date(Date.parse(item.timestamp)), // Convert timestamp to Date object
     }));
+
+  }
+  static async getAllRoutes(): Promise<RoutePath[]> {
+    const response = await fetch(`${this.baseUrl}/route`);
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    const responseData = await response.json();
+    const data = responseData.map((item: any) => ({
+      ...item,
+      routePoints: item.route_points.map((point: any) => ({
+        latitude: point.latitude,
+        longitude: point.longitude,
+      })),
+    }));
+    return data;
   }
 }

@@ -4,19 +4,19 @@ import AccelerationChart from "@/components/acceleration-chart";
 import styles from "./styles.module.scss";
 import { useEffect, useState } from "react";
 import { SensorData } from "@/services/types";
-import { SensorApiService } from "@/services/api-service";
+import { ApiService } from "@/services/api-service";
 import FrequencyChart from "@/components/frequency-chart";
 
 export default function IMU() {
   const [sensorData, setSensorData] = useState<SensorData[]>([]);
   useEffect(() => {
-    SensorApiService.fetchSensorData().then((data) => {
+    ApiService.fetchSensorData().then((data) => {
       setSensorData(data);
     }).catch((error) => {
       console.error("Error fetching sensor data:", error);
     });
     const interval = setInterval(() => {
-      SensorApiService.fetchSensorData().then((data) => {
+      ApiService.fetchSensorData().then((data) => {
         setSensorData(data);
       }).catch((error) => {
         console.error("Error fetching sensor data:", error);

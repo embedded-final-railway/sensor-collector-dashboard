@@ -1,0 +1,29 @@
+.container {
+  background-color: rgba(255, 255, 255, 0.1);
+  cursor: pointer;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.6);
+  }
+}
+
+.title {
+  font-size: large;
+  font-weight: bold;
+  color: white;
+}
+
+.route-info {
+  width: fit-content;
+}
+
+@media (prefers-color-scheme: dark) {
+  .container {
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 10px;
+    padding: 10px 10px;
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.8);
+    }
+  }
+}
