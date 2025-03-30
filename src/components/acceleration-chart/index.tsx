@@ -34,7 +34,10 @@ export default function AccelerationChart({ data }: { data: SensorData[] }) {
         axisLabel: {
           formatter: (value: number) => {
             const date = new Date(value);
-            return `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
+            const hours = date.getHours();
+            const minutes = date.getMinutes().toString().padStart(2, '0');
+            const seconds = date.getSeconds().toString().padStart(2, '0');
+            return `${hours}:${minutes}:${seconds}`;
           }
         },
       },
