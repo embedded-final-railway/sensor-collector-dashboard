@@ -41,16 +41,25 @@ export default function FrequencyChart({ data, size, frequency, title, color }: 
           show: false
         },
         animation: false,
+        name: "Frequency (Hz)",
+        nameLocation: "middle",
+        nameTextStyle: {
+            padding: 10,
+        },
       },
       yAxis: {
         type: 'value',
         splitLine: {
           show: false
         },
+        name: "Magnitude (log10)",
+        nameTextStyle: {
+          align: "center",
+        },
       },
       series: [
         {
-          name: 'X-axis Frequency',
+          name: title,
           type: 'line',
           showSymbol: false,
           color: color,

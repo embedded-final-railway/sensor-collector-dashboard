@@ -22,13 +22,25 @@ export default function AccelerationChart({ data }: { data: SensorData[] }) {
       },
       xAxis: {
         type: 'time',
+        name: "Time",
+        nameLocation: "middle",
+        nameTextStyle: {
+          padding: 10,
+        },
         splitLine: {
           show: false
         },
         animation: false,
+        axisLabel: {
+          formatter: (value: number) => {
+            const date = new Date(value);
+            return `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
+          }
+        },
       },
       yAxis: {
         type: 'value',
+        name: "Mangitude (m/s^2)",
         splitLine: {
           show: false
         }
@@ -93,6 +105,6 @@ export default function AccelerationChart({ data }: { data: SensorData[] }) {
   }, [data]);
 
   return (
-    <div ref={canvasRef}  className={`${styles.canvas}`}/>
+    <div ref={canvasRef} className={`${styles.canvas}`} />
   );
 }
