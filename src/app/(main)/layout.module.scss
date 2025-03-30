@@ -1,0 +1,9 @@
+.sticky {
+  position: fixed;
+  right: 5px;
+  top: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  z-index: 1;
+}

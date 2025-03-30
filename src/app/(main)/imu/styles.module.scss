@@ -1,0 +1,13 @@
+.main-content {
+  display: grid;
+  grid-template:
+    "acceleration acceleration acceleration" 1fr
+    "frequency_x frequency_y frequency_z" 1fr / 1fr 1fr 1fr;
+  gap: 20px;
+  height: 100vh;
+  padding: 20px;
+  > * {
+    width: 100%;
+    height: 100%;
+  }
+}
