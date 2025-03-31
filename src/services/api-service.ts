@@ -92,4 +92,13 @@ export class ApiService {
       throw new Error('Network response was not ok');
     }
   }
+
+  static async getShakingStatus(): Promise<boolean> {
+    const response = await fetch(`${this.baseUrl}/is-vibrating`);
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    const data = await response.json();
+    return data.is_vibrating;
+  }
 }

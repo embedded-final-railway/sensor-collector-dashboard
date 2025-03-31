@@ -11,7 +11,8 @@
   gap: 10px;
   height: calc(100vh - 60px);
   padding: 20px;
-  > * {
+
+  >* {
     width: 100%;
     height: 100%;
   }
@@ -27,10 +28,48 @@
   color: white;
   font-size: large;
   font-weight: bold;
+
   &.running {
     background-color: green;
   }
+
   &.stopped {
     background-color: red;
+  }
+}
+
+.notification-panel {
+  position: fixed;
+  z-index: 1;
+  top: 50px;
+  right: 10px;
+  padding: 10px;
+  display: none;
+  border: 1px solid black;
+  border-radius: 10px;
+  background-color: white;
+  &.active {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  >.title {
+    font-size: large;
+    color: red;
+    font-weight: bold;
+  }
+  >.action {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    cursor: pointer;
+    &:hover {
+      background-color: #e0e0e0;
+    }
   }
 }

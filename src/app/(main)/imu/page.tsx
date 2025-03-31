@@ -47,6 +47,22 @@ export default function IMU() {
   function handleStatusClick() {
     ApiService.setLockStatus(isRunning!)
   }
+  const [shaking, setShaking] = useState(false);
+  function handleStopClick() {
+    ApiService.setLockStatus(true)
+  }
+  useEffect(() => {
+    const interval = setInterval(() => {
+      ApiService.getShakingStatus().then((status) => {
+        setShaking(status);
+      }).catch((error) => {
+        console.error("Error fetching shaking status:", error);
+      });
+    }, 1000);
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
   return (
     <div className={styles["container"]}>
       <div className={`${styles["main-content"]}`} >
@@ -63,6 +79,13 @@ export default function IMU() {
           <FrequencyChart data={accelZ} frequency={500} size={1024} title="Z-Axis FFT" color="#0000ff" />
         </div>
       </div>
+      {isRunning && shaking && (<>
+        <div className={`${styles["notification-panel"]} ${styles["active"]}`}>
+          <h3 className={`${styles["title"]}`}>ตรวจพบการสั่นสะเทือน</h3>
+          <button className={`${styles["action"]}`} onClick={handleStopClick} >หยุดรถ</button>
+        </div>
+        <audio src="/notification.mp3" autoPlay />
+      </>)}
       {
         isRunning !== null && (
           <div className={`${styles["status"]} ${isRunning ? styles["running"] : styles["stopped"]}`} onClick={handleStatusClick}>
