@@ -2,7 +2,7 @@ import { RoutePath, SensorData } from "./types";
 
 export class ApiService {
   // private static baseUrl: string = 'http://localhost:8080'; // Adjust the URL as needed
-  private static baseUrl: string = 'https://linux-vm-southeastasia-2.southeastasia.cloudapp.azure.com'; // Adjust the URL as needed
+  private static baseUrl: string = 'https://linux-vm-southeastasia-2.southeastasia.cloudapp.azure.com/api'; // Adjust the URL as needed
 
   static async fetchSensorData(size?: number): Promise<SensorData[]> {
     if (!size) {
