@@ -80,7 +80,6 @@ export default function EditRoutePage() {
     }
   }, [options]);
 
-
   function handleSave() {
     const shapes = dataSourceRef.current!.getShapes();
     const routePoints = shapes.map((shape) => {
