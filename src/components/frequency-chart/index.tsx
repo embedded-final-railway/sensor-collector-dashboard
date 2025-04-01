@@ -5,6 +5,7 @@ import { useEffect, useMemo, useRef } from "react";
 import styles from "./styles.module.scss";
 import * as echarts from "echarts";
 import { computeFFT } from "@/services/fft";
+import { ApiService } from "@/services/api-service";
 
 export default function FrequencyChart({ data, size, frequency, title, color }: { data: number[], size: number, frequency: number, title: string, color: string }) {
   if (!data || data.length === 0) return <></>;
@@ -70,8 +71,6 @@ export default function FrequencyChart({ data, size, frequency, title, color }: 
   }, []);
   useEffect(() => {
     if (!canvasRef.current) return;
-    // canvasRef.current.width = canvasRef.current.clientWidth;
-    // canvasRef.current.height = canvasRef.current.clientHeight;
     chartRef.current = echarts.init(canvasRef.current, null, {
       renderer: 'canvas',
       useDirtyRect: true,
@@ -79,6 +78,7 @@ export default function FrequencyChart({ data, size, frequency, title, color }: 
     chartRef.current.setOption(option);
     return () => {
       chartRef.current!.dispose();
+      chartRef.current = null;
     };
   }, [option]);
 
