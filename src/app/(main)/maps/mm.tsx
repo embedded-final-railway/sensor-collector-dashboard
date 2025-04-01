@@ -8,7 +8,7 @@ import { ApiService } from "@/services/api-service";
 import RouteList from "./route-list";
 import { RoutePath } from "@/services/types";
 import { lineInsideCircle, nearestPointOnLine, Point } from "./lib";
-
+import styles from "./styles.module.scss";
 function getRouteLine(route: RoutePath): atlas.data.LineString {
   const coordinates = route.routePoints.map((point) => [point.longitude, point.latitude]);
   const line = new atlas.data.LineString(coordinates);
@@ -121,8 +121,13 @@ export default function MM() {
     }} />
   );
 
+
+
   return (
     <div style={{ width: "100%", height: "100vh" }}>
+      {affectedLine.coordinates.length > 0 && (<button className={`${styles["lift-button"]}`} onClick={() => {
+        setAffectedLine(new atlas.data.LineString([]));
+      }}><span>ปลดระบบแจ้งเตือน</span></button>)}
       <RouteList onSelectItem={handleRouteSelect} />
       <AzureMapsProvider>
         <AzureMap options={option} cameraOptions={cameraOptions} >
